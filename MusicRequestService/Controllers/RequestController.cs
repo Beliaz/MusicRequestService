@@ -85,12 +85,11 @@ namespace MusicRequestService.Controllers
 
                 try
                 {
-                    downloadProcess = Process.Start("powershell.exe",
-                        $"\"{Path.Combine(Environment.CurrentDirectory, "Download-MP3.ps1")} {url.Value} {tmpPath}\"");
+                    downloadProcess = Process.Start("pwsh", $"./Download-MP3.ps1 {url.Value} {tmpPath}");
                 }
                 catch (Exception e)
                 {
-                    _logger.LogWarning($"Error while starting download process\n{e}");
+                    _logger.LogError($"Error while starting download process\n{e}");
                     return;
                 }
 
