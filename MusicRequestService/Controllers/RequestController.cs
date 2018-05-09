@@ -53,7 +53,7 @@ namespace MusicRequestService.Controllers
                 return;
             }
 
-            var url = Regex.Match(body, "https?:\\/\\/(www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,4}\\b([-a-zA-Z0-9@:%_\\+.~#?&//=]*)");
+            var url = Regex.Match(body, "https?:\\/\\/(www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{2,256}(\\.[a-z]{2,4})?\\b([-a-zA-Z0-9@:%_\\+.~#?&/=]*)");
 
             if (!url.Success)
             {
