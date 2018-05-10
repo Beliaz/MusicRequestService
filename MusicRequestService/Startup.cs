@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using MusicRequestService.Services;
 
 namespace MusicRequestService
 {
@@ -32,6 +33,11 @@ namespace MusicRequestService
                 options.InputFormatters.Add(new TextPlainInputFormatter());
             });
 
+            services.AddTransient<DownloadService>();
+            services.AddSingleton(s =>
+                new PublishingService(
+                    new Uri(Configuration["Host:ExternalAddress"]),
+                    s.GetService<ILogger<PublishingService>>()));
 
             var physicalProvider = _environment.ContentRootFileProvider;
             var tempProvider = new PhysicalFileProvider(Path.GetTempPath());
