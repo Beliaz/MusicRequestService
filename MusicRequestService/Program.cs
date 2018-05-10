@@ -20,6 +20,7 @@ namespace MusicRequestService
         public static IWebHost BuildWebHost(string[] args)
         {
             var config = new ConfigurationBuilder()
+                .AddEnvironmentVariables()
                 .AddCommandLine(args)
                 .Build();
 
