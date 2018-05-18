@@ -47,9 +47,14 @@ namespace MusicRequestService.Services
 
         public void Publish(Uri callbackUri, string guid, string file)
         {
+            var uribuilder = new UriBuilder(_hostAddress)
+            {
+                Path = $"Request/File/{guid}"
+            };
+
             var requestBody = new CallbackRequest
             {
-                Uri = $"{_hostAddress}/Request/File/{guid}",
+                Uri = uribuilder.ToString(),
                 FileName = Path.GetFileName(file)
             };
 
