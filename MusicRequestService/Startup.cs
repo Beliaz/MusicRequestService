@@ -56,6 +56,8 @@ namespace MusicRequestService
 
             app.UseMvc();
 
+            // instantiate publishing singleton
+            app.ApplicationServices.GetService<PublishingService>();
         }
 
         private readonly IHostingEnvironment _environment;

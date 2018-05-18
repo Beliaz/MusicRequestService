@@ -18,8 +18,8 @@ namespace MusicRequestService.Services
 
         public PublishingService(Uri hostAddress, ILogger<PublishingService> logger)
         {
-            _logger = logger;
-            _hostAddress = hostAddress;
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+            _hostAddress = hostAddress ?? throw new ArgumentNullException(nameof(hostAddress));
 
             //specify to use TLS 1.2 as default connection
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
