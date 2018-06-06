@@ -16,7 +16,7 @@
     },
     "MusicRequestService": {
       "commandName": "Project",
-      "commandLineArgs": "Host:ExternalAddress=http://localhost",
+      "commandLineArgs": "Host:ExternalAddress=http://localhost/",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
