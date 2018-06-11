@@ -1,0 +1,15 @@
+{
+    "name": "Nyx",
+    "description": "",
+    "secretKey": "",
+    "services": [
+        {
+            "appId": "",
+            "id": "2195edf0-6dcc-11e8-b5d1-c111912e0070",
+            "type": "endpoint",
+            "appPassword": "",
+            "endpoint": "http://localhost:7071/api/Nyx",
+            "name": "http://localhost:7071/api/Nyx"
+        }
+    ]
+}
