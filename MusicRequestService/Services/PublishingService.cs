@@ -22,7 +22,8 @@ namespace MusicRequestService.Services
             _hostAddress = hostAddress ?? throw new ArgumentNullException(nameof(hostAddress));
 
             //specify to use TLS 1.2 as default connection
-            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
+            ServicePointManager.SecurityProtocol =
+                SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
         }
 
         public string GetFile(string guid)

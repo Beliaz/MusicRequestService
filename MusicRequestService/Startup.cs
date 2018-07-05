@@ -1,16 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using MusicRequestService.Services;
 
 namespace MusicRequestService
@@ -28,10 +23,7 @@ namespace MusicRequestService
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc(options =>
-            {
-                options.InputFormatters.Add(new TextPlainInputFormatter());
-            });
+            services.AddMvc(options => { options.InputFormatters.Add(new TextPlainInputFormatter()); });
 
             services.AddTransient<DownloadService>();
             services.AddSingleton(s =>

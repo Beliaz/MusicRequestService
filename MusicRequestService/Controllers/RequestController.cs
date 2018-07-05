@@ -1,34 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Net;
 using System.Net.Http;
-using System.Runtime.Serialization.Json;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Xml;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using MusicRequestService.Services;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace MusicRequestService.Controllers
 {
     [Route("/Request")]
     public class RequestController : Controller
     {
-        private static readonly Regex UrlRegex = new Regex("https?:\\/\\/(www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{2,256}(\\.[a-z]{2,4})?\\b([-a-zA-Z0-9@:%_\\+.~#?&/=]*)");
+        private static readonly Regex UrlRegex =
+            new Regex(
+                "https?:\\/\\/(www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{2,256}(\\.[a-z]{2,4})?\\b([-a-zA-Z0-9@:%_\\+.~#?&/=]*)");
 
         private readonly ILogger<RequestController> _logger;
         private readonly HttpClient _client = new HttpClient();
         private readonly DownloadService _downloadService;
         private readonly PublishingService _publishingService;
 
-        public RequestController(ILogger<RequestController> logger, DownloadService downloadService, PublishingService publishingService)
+        public RequestController(ILogger<RequestController> logger, DownloadService downloadService,
+            PublishingService publishingService)
         {
             _logger = logger;
             _downloadService = downloadService;
