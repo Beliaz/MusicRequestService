@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
-namespace Bot
+namespace BotService
 {
     public class BaseState : IDictionary<string, object>
     {
@@ -16,24 +16,6 @@ namespace Bot
         {
             _dict = source;
         }
-
-        protected T GetProperty<T>([CallerMemberName] string propName = null)
-        {
-            if (TryGetValue(propName ?? throw new ArgumentNullException(nameof(propName)),
-                out var value))
-            {
-                return (T) value;
-            }
-
-            return default(T);
-        }
-
-        protected void SetProperty(object value, [CallerMemberName] string propName = null)
-        {
-            this[propName ?? throw new ArgumentNullException(nameof(propName))] = value;
-        }
-
-        private readonly IDictionary<string, object> _dict;
 
         public IEnumerator<KeyValuePair<string, object>> GetEnumerator()
         {
@@ -103,5 +85,21 @@ namespace Bot
         public ICollection<string> Keys => _dict.Keys;
 
         public ICollection<object> Values => _dict.Values;
+
+        protected T GetProperty<T>([CallerMemberName] string propName = null)
+        {
+            if (TryGetValue(propName ?? throw new ArgumentNullException(nameof(propName)),
+                out var value))
+                return (T) value;
+
+            return default(T);
+        }
+
+        protected void SetProperty(object value, [CallerMemberName] string propName = null)
+        {
+            this[propName ?? throw new ArgumentNullException(nameof(propName))] = value;
+        }
+
+        private readonly IDictionary<string, object> _dict;
     }
 }
