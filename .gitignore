@@ -260,3 +260,5 @@ paket-files/
 __pycache__/
 *.pyc
 MusicRequestService/packages-microsoft-prod.deb
+SoundPool/Migrations/
+SoundPool/library.db
