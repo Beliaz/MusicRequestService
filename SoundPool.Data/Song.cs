@@ -2,13 +2,6 @@
 
 namespace SoundPool.Data
 {
-    public class SongUri
-    {
-        public string Id { get; set; }
-
-        public string UriString { get; set; }
-    }
-
     public class Song
     {
         public string Id { get; set; }
@@ -17,6 +10,6 @@ namespace SoundPool.Data
 
         public ICollection<Artist> Artists { get; set; }
 
-        //public List<SongUri> Urls { get; set; }
+        public string Url { get; set; }
     }
 }
