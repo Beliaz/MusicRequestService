@@ -1,4 +1,6 @@
-﻿namespace SoundPool.Data
+﻿using System.Collections.Generic;
+
+namespace SoundPool.Data
 {
     public class SongUri
     {
@@ -13,7 +15,7 @@
 
         public string Title { get; set; }
 
-        public Artist Artist { get; set; }
+        public ICollection<Artist> Artists { get; set; }
 
         //public List<SongUri> Urls { get; set; }
     }

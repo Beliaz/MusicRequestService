@@ -13,7 +13,10 @@ namespace SoundPool
         public string Title { get; set; }
 
         [DataMember]
-        public string Artist { get; set; }
+        public List<string> Artists { get; set; }
+
+        [DataMember]
+        public string Version { get; set; }
 
         [DataMember]
         public string Url { get; set; }

@@ -23,7 +23,7 @@ namespace SoundPool.Controllers
         {
             return Ok(_dbContext
                 .Songs
-                .Include(s => s.Artist));
+                .Include(s => s.Artists));
         }
 
         [HttpGet("Songs/{id}")]
@@ -31,7 +31,7 @@ namespace SoundPool.Controllers
         {
             return Ok(_dbContext
                 .Songs.Where(s => s.Id.Equals(id))
-                .Include(s => s.Artist)
+                .Include(s => s.Artists)
                 .First());
         }
 
@@ -51,14 +51,14 @@ namespace SoundPool.Controllers
         [HttpPost("Songs")]
         public ActionResult PostSong(CreateSongRequest request)
         {
-            var artist = _dbContext.Artists.FirstOrDefault(a => a.Name.Equals(request.Artist));
+            var artist = _dbContext.Artists.FirstOrDefault(a => a.Name.Equals(request.Artists.First()));
             var exisitingSongs = _dbContext.Songs.Where(s => request.Title.Equals(s.Title));
 
             if (exisitingSongs.Any() && artist != null)
             {
                 var song = exisitingSongs
-                    .Include(s => s.Artist)
-                    .FirstOrDefault(s => s.Artist.Equals(artist));
+                    .Include(s => s.Artists)
+                    .FirstOrDefault(s => s.Artists.All(a => a.Equals(artist)));
 
                 if (song != null)
                     return Ok(song.Id);
@@ -66,11 +66,15 @@ namespace SoundPool.Controllers
 
             if (artist is null)
             {
-                artist = new Artist {Name = request.Artist};
-                _dbContext.Artists.Add(artist);
+                foreach (var artistName in request.Artists
+                    .Where(ra => !_dbContext.Artists
+                        .Any(a => a.Name.Equals(ra))))
+                {
+                    _dbContext.Artists.Add(new Artist {Name = artistName});
+                }
             }
 
-            var newSong = new Song {Title = request.Title, Artist = artist};
+            var newSong = new Song {Title = request.Title, Artists = _dbContext.Artists.Local};
 
             _dbContext.Songs.Add(newSong);
             _dbContext.SaveChanges();
