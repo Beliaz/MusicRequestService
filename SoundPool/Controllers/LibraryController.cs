@@ -5,7 +5,7 @@ using SoundPool.Data.EFCore;
 
 namespace SoundPool.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("soundpool/api/[controller]")]
     [ApiController]
     public class LibraryController : ControllerBase
     {

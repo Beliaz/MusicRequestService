@@ -12,7 +12,7 @@
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "api/Library/Songs",
+      "launchUrl": "soundpool/api/Library/Songs",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
