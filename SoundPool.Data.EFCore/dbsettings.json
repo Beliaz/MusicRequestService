@@ -1,6 +1,6 @@
 ﻿{
   "ConnectionStrings":
   {
-    "LibraryContext": "Data Source=C:\\Users\\Florian\\Dev\\projects\\MusicRequestService\\SoundPool.Data.Db\\SoundPool.db"
+    "LibraryContext": "Data Source=C:\\Users\\Florian\\Dev\\projects\\MusicRequestService\\SoundPool.Data.LocalDb\\SoundPool.db"
   }
 }
