@@ -47,5 +47,35 @@ namespace SoundPool.Controllers
             return Ok(_dbContext.Artists
                 .First(s => s.Id.Equals(id)));
         }
+
+        [HttpPost("Songs")]
+        public ActionResult PostSong(CreateSongRequest request)
+        {
+            var artist = _dbContext.Artists.FirstOrDefault(a => a.Name.Equals(request.Artist));
+            var exisitingSongs = _dbContext.Songs.Where(s => request.Title.Equals(s.Title));
+
+            if (exisitingSongs.Any() && artist != null)
+            {
+                var song = exisitingSongs
+                    .Include(s => s.Artist)
+                    .FirstOrDefault(s => s.Artist.Equals(artist));
+
+                if (song != null)
+                    return Ok(song.Id);
+            }
+
+            if (artist is null)
+            {
+                artist = new Artist {Name = request.Artist};
+                _dbContext.Artists.Add(artist);
+            }
+
+            var newSong = new Song {Title = request.Title, Artist = artist};
+
+            _dbContext.Songs.Add(newSong);
+            _dbContext.SaveChanges();
+
+            return Ok(newSong.Id);
+        }
     }
 }
