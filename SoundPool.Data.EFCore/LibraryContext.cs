@@ -16,5 +16,10 @@ namespace SoundPool.Data.EFCore
         public DbSet<Song> Songs { get; set; }
 
         public DbSet<Artist> Artists { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<SongUrl>().HasKey(u => u.Url);
+        }
     }
 }

@@ -10,6 +10,6 @@ namespace SoundPool.Data
 
         public ICollection<Artist> Artists { get; set; }
 
-        public string Url { get; set; }
+        public ICollection<SongUrl> Url { get; set; }
     }
 }
