@@ -22,7 +22,11 @@ namespace SoundPool.Data.EFCore.Migrations
 
                     b.Property<string>("Name");
 
+                    b.Property<string>("SongId");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("SongId");
 
                     b.ToTable("Artists");
                 });
@@ -32,22 +36,18 @@ namespace SoundPool.Data.EFCore.Migrations
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("ArtistId");
-
                     b.Property<string>("Title");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ArtistId");
-
                     b.ToTable("Songs");
                 });
 
-            modelBuilder.Entity("SoundPool.Data.Song", b =>
+            modelBuilder.Entity("SoundPool.Data.Artist", b =>
                 {
-                    b.HasOne("SoundPool.Data.Artist", "Artist")
-                        .WithMany()
-                        .HasForeignKey("ArtistId");
+                    b.HasOne("SoundPool.Data.Song")
+                        .WithMany("Artists")
+                        .HasForeignKey("SongId");
                 });
 #pragma warning restore 612, 618
         }
