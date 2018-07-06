@@ -1,12 +1,14 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
 
 namespace SoundPool.Data.EFCore
 {
-    public class LibraryContextDesignTimeDbContextFactory : IDesignTimeDbContextFactory<LibraryContext>
+    public class BaseDesignTimeDbContextFactory<T> : IDesignTimeDbContextFactory<T>
+        where T : DbContext
     {
-        public LibraryContext CreateDbContext(string[] args)
+        public T CreateDbContext(string[] args)
         {
             var builder = new DbContextOptionsBuilder<LibraryContext>();
 
@@ -14,9 +16,10 @@ namespace SoundPool.Data.EFCore
                 .AddJsonFile("dbsettings.json", optional: false, reloadOnChange: true)
                 .Build();
 
-            builder.UseSqlite(configBuilder["ConnectionString"]);
+            builder.UseSqlite(configBuilder.GetConnectionString(typeof(T).Name));
 
-            return new LibraryContext(builder.Options);
+            return Activator.CreateInstance(
+                typeof(T), builder.Options) as T;
         }
     }
 }

@@ -9,7 +9,7 @@ namespace SoundPool.Data.EFCore
         {
         }
 
-        public LibraryContext(DbContextOptions options) : base(options)
+        public LibraryContext(DbContextOptions<LibraryContext> options) : base(options)
         {
         }
 
