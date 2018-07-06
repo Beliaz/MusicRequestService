@@ -1,0 +1,15 @@
+POST https://localhost:44366/soundpool/api/Library/Songs
+Content-Type: application/json
+
+{
+    "Title": "Another Chance",
+    "Artists": [ "Don Diablo" ]
+}
+
+###
+
+GET https://localhost:44366/soundpool/api/Library/Songs
+
+### 
+
+GET https://localhost:44366/soundpool/api/Library/Song/fa854757-3847-4d71-b1de-33350dd663e5
