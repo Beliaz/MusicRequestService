@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using SoundPool.Data.EFCore;
 
 namespace SoundPool
 {
@@ -20,8 +21,7 @@ namespace SoundPool
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-
-            services.AddDbContext<LibraryContext>(o => o.UseSqlite("Data Source=./library.db"));
+            services.AddDbContext<LibraryContext>(o => o.UseSqlite(Configuration["ConnectionString"]));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

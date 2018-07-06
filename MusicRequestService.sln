@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SoundPool", "SoundPool\Soun
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoundPool.Data", "SoundPool.Data\SoundPool.Data.csproj", "{A3192A4C-6739-4DE4-B19D-A9142F91D760}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoundPool.Data.EFCore", "SoundPool.Data.EFCore\SoundPool.Data.EFCore.csproj", "{CAFCEC5A-05D8-41A2-91B0-E002CD0199E4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{A3192A4C-6739-4DE4-B19D-A9142F91D760}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A3192A4C-6739-4DE4-B19D-A9142F91D760}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A3192A4C-6739-4DE4-B19D-A9142F91D760}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CAFCEC5A-05D8-41A2-91B0-E002CD0199E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CAFCEC5A-05D8-41A2-91B0-E002CD0199E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CAFCEC5A-05D8-41A2-91B0-E002CD0199E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CAFCEC5A-05D8-41A2-91B0-E002CD0199E4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

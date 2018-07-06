@@ -1,10 +1,14 @@
-﻿using Microsoft.EntityFrameworkCore;
-using SoundPool.Data;
+﻿using System.Data.Common;
+using Microsoft.EntityFrameworkCore;
 
-namespace SoundPool
+namespace SoundPool.Data.EFCore
 {
     public class LibraryContext : DbContext
     {
+        protected LibraryContext()
+        {
+        }
+
         public LibraryContext(DbContextOptions options) : base(options)
         {
         }

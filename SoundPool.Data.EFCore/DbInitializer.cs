@@ -1,7 +1,6 @@
 ﻿using System.Linq;
-using SoundPool.Data;
 
-namespace SoundPool
+namespace SoundPool.Data.EFCore
 {
     public static class DbInitializer
     {

@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Data\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
@@ -15,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SoundPool.Data.EFCore\SoundPool.Data.EFCore.csproj" />
     <ProjectReference Include="..\SoundPool.Data\SoundPool.Data.csproj" />
   </ItemGroup>
 

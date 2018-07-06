@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using SoundPool.Data;
+using SoundPool.Data.EFCore;
 
 namespace SoundPool.Controllers
 {
@@ -19,9 +16,16 @@ namespace SoundPool.Controllers
             _dbContext = dbContext;
         }
 
-        // GET api/values
         [HttpGet("Songs")]
         public ActionResult<IEnumerable<string>> GetSongs()
+        {
+            return Ok(_dbContext
+                .Songs
+                .Include(s => s.Artist));
+        }
+
+        [HttpGet("Artists")]
+        public ActionResult<IEnumerable<string>> GetArtists()
         {
             return Ok(_dbContext
                 .Songs
