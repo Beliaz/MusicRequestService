@@ -13,9 +13,9 @@ namespace SoundPool
             context.Database.EnsureCreated();
 
             // Look for any students.
-            //context.Artists.Delete();
-            //context.Songs.Delete();
-            //context.SaveChanges();
+            context.Artists.Delete();
+            context.Songs.Delete();
+            context.SaveChanges();
 
             if (context.Songs.Any())
             {
@@ -42,22 +42,31 @@ namespace SoundPool
                 new Song
                 {
                     Title = "Carry Me Home",
-                    Artists = context.Artists.Where(a => a.Name.Equals("KSHMR")).ToList()
+                    Artists = context.Artists.Where(a => a.Name.Equals("KSHMR"))
+                        .Select(a => new SongArtist {Artist = a})
+                        .ToList()
                 },
                 new Song
                 {
                     Title = "Grizzly",
-                    Artists = context.Artists.Where(a => a.Name.Equals("Matisse & Sadko")).ToList()
+                    Artists = context.Artists.Where(a => a.Name.Equals("Matisse & Sadko"))
+                        .Select(a => new SongArtist {Artist = a})
+                        .ToList()
                 },
                 new Song
                 {
                     Title = "Out My Mind",
-                    Artists = context.Artists.Where(a => a.Name.Equals("Tritonal")).ToList()
+                    Artists = context.Artists.Where(a => a.Name.Equals("Tritonal"))
+                        .Select(a => new SongArtist {Artist = a})
+                        .ToList()
                 },
                 new Song
                 {
                     Title = "Out My Mind (Apek Remix)",
-                    Artists = artists.Skip(2).ToList()
+                    Artists = artists
+                        .Select(a => new SongArtist {Artist = a})
+                        .Skip(2)
+                        .ToList()
                 }
             };
 

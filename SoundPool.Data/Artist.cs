@@ -1,9 +1,11 @@
-﻿namespace SoundPool.Data
+﻿using System.Collections.Generic;
+
+namespace SoundPool.Data
 {
     public class Artist
     {
-        public string Id { get; set; }
-
         public string Name { get; set; }
+
+        public ICollection<SongArtist> Songs { get; } = new List<SongArtist>();
     }
 }

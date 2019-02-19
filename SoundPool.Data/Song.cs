@@ -8,8 +8,8 @@ namespace SoundPool.Data
 
         public string Title { get; set; }
 
-        public ICollection<Artist> Artists { get; set; }
+        public ICollection<SongArtist> Artists { get; set; } = new List<SongArtist>();
 
-        public ICollection<SongUrl> Url { get; set; }
+        public ICollection<SongUrl> Url { get; set; } = new List<SongUrl>();
     }
 }

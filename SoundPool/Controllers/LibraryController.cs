@@ -42,10 +42,10 @@ namespace SoundPool.Controllers
         }
 
         [HttpGet("Artists/{id}")]
-        public ActionResult<IEnumerable<string>> GetArtist(string id)
+        public ActionResult<IEnumerable<string>> GetArtist(string name)
         {
             return Ok(_dbContext.Artists
-                .First(s => s.Id.Equals(id)));
+                .First(s => s.Name.Equals(name)));
         }
 
         [HttpPost("Songs")]
@@ -58,7 +58,7 @@ namespace SoundPool.Controllers
             {
                 var song = exisitingSongs
                     .Include(s => s.Artists)
-                    .FirstOrDefault(s => s.Artists.All(a => a.Equals(artist)));
+                    .FirstOrDefault(s => s.Artists.All(a => a.Artist.Equals(artist)));
 
                 if (song != null)
                     return Ok(song.Id);
@@ -74,7 +74,13 @@ namespace SoundPool.Controllers
                 }
             }
 
-            var newSong = new Song {Title = request.Title, Artists = _dbContext.Artists.Local};
+            var newSong = new Song
+            {
+                Title = request.Title,
+                Artists = _dbContext.Artists.Local
+                    .Select(a => new SongArtist {Artist = a})
+                    .ToList()
+            };
 
             _dbContext.Songs.Add(newSong);
             _dbContext.SaveChanges();
